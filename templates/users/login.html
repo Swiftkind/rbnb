@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+{% block title %} Airbnb login{% endblock %}
+
+{% block content %}
+<div class="fluid-container">
+    {{ form.non_field_errors }}
+    {{ form.email.errors }}
+    {{ form.password.errors }}
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-div">
+                <label for="{{ form.email.id_for_label }}"> Email: </label>
+                {{ form.email }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-div">
+                <label for="{{ form.password.id_for_label }}"> Password: </label>
+                {{ form.password }}
+            </div>
+        </div>  
+        <button type="submit" class="btn btn-primary btn-register ">login</button>
+    </form>
+</div>
+{% endblock %}
+
+

@@ -1,7 +1,8 @@
+from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.views.generic import View, TemplateView
-from users.forms import UserRegistrationForm
+from users.forms import UserRegistrationForm, LoginForm
 
 
 class IndexView(TemplateView):
@@ -23,3 +24,17 @@ class SignupView(TemplateView):
         return render(self.request, self.template_name, {'form': form})
 
 
+class LoginView(TemplateView):
+    template_name = 'users/login.html'
+
+    def get(self, *args, **kwargs):
+        form = LoginForm()
+        return render(self.request, self.template_name, {'form': form})
+
+    def post(self, *args, **kwargs):
+        form = LoginForm(self.request.POST)
+        if form.is_valid():
+            user = form.user_cache
+            login(self.request, user)
+            return HttpResponseRedirect(reverse('index'))
+        return render(self.request, self.template_name, {'from': form})
