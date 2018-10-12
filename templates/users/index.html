@@ -26,14 +26,14 @@
 
             <ul class="nav navbar-nav navbar-right">
                 
-                
                 {% if request.user.is_authenticated %}
                 <li><a href="#">{{ request.user.email }}</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="#">Become a host</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="{% url 'signup' %}">Sign up</a></li>
-                <li><a href="{% url 'login' %}">Log in</a></li>
+                <li><a href="{% url 'signin' %}">Log in</a></li>
                 {% endif%}
                 
             </ul>

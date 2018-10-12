@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate
 
 
 class UserRegistrationForm(forms.ModelForm):
-
     email = forms.EmailField(widget=forms.TextInput())
     password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8}), required=True)
 
@@ -29,7 +28,7 @@ class UserRegistrationForm(forms.ModelForm):
         return instance
 
 
-class LoginForm(forms.Form):
+class LoginForm(forms.Form):    
     user_cache = None
 
     email = forms.EmailField()
@@ -41,10 +40,10 @@ class LoginForm(forms.Form):
         password = self.cleaned_data.get('password')
         
         user = authenticate(email=email, password=password)
-
         if not user:
             raise forms.ValidationError('Invalid Email or Password.')
         else:
             self.user_cache=user
 
         return self.cleaned_data
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

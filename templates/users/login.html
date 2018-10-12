@@ -6,7 +6,7 @@
     {{ form.non_field_errors }}
     {{ form.email.errors }}
     {{ form.password.errors }}
-    <form method="POST" action="{% url 'login' %}">
+    <form method="POST" action="{% url 'signin' %}">
         {% csrf_token %}
         <div class="row">
             <div class="input-div">
@@ -20,6 +20,10 @@
                 {{ form.password }}
             </div>
         </div>  
+        <div class="row">
+            <h5><a href="{% url 'password_reset' %}">Forgot Password?</a></h5>
+            
+        </div>
         <button type="submit" class="btn btn-primary btn-register ">login</button>
     </form>
 </div>

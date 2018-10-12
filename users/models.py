@@ -1,11 +1,13 @@
-from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
     PermissionsMixin,
     )
+from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
+from uuid import uuid4
 
 
 class UserManager(BaseUserManager):
@@ -53,6 +55,6 @@ class User(AbstractBaseUser,PermissionsMixin):
         super(User, self).clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
-    def get_full_name(self) :
+    def get_full_name(self):
         full_name = '%s %s' %(self.first_name, self.last_name)
         return full_name.strip()

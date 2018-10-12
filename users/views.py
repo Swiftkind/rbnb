@@ -1,8 +1,19 @@
-from django.contrib.auth import login
+from django.conf import settings
+from django.contrib.auth import (
+    login,
+    logout,
+)
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
-from django.views.generic import View, TemplateView
-from users.forms import UserRegistrationForm, LoginForm
+from django.views.generic import (
+    View, 
+    TemplateView
+)
+from users.forms import (
+    UserRegistrationForm, 
+    LoginForm, 
+)
 
 
 class IndexView(TemplateView):
@@ -38,3 +49,9 @@ class LoginView(TemplateView):
             login(self.request, user)
             return HttpResponseRedirect(reverse('index'))
         return render(self.request, self.template_name, {'from': form})
+
+
+class LogoutView(View):
+    def get(self, *args, **kwargs):
+        logout(self.request)
+        return HttpResponseRedirect(reverse('index'))
