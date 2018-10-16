@@ -1,0 +1,42 @@
+{% extends '../base.html' %}
+{% block title %} Airbnb Signup{% endblock %}
+
+{% block content %}
+<div class="fluid-container">
+    {{ form.non_field_errors }}
+    {{ form.first_name.errors }}
+    {{ form.last_name.errors }}
+    {{ form.email.errors }}
+    {{ form.password.errors }}
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-div">
+                <label for="{{ form.email.id_for_label }}"> Email: </label>
+                {{ form.email }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-div">
+                <label for="{{ form.first_name.id_for_label }}"> First Name: </label>
+                {{ form.first_name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-div">
+                <label for="{{ form.last_name.id_for_label }}"> Last Name: </label>
+                {{ form.last_name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-div">
+                <label for="{{ form.password.id_for_label }}"> Password: </label>
+                {{ form.password }}
+            </div>
+        </div>  
+        <button type="submit" class="btn btn-primary btn-register ">Register</button>
+    </form>
+</div>
+{% endblock %}
+
+
